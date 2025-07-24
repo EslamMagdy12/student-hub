@@ -36,8 +36,6 @@ fun doAction(action: Action) {
     when (action) {
         is Action.AddStudent -> {
             val id: Int
-
-
             while (true) {
                 print("Enter Student ID: ")
                 val input = readLine()?.toIntOrNull()
@@ -48,9 +46,7 @@ fun doAction(action: Action) {
                     break
                 }
             }
-
             val name: String
-
             while (true) {
                 print("Enter Student name: ")
                 val input = readLine()?.toString() ?: null
@@ -80,7 +76,6 @@ fun doAction(action: Action) {
             }
             val grade: String
             val grades = listOf("a", "b", "c", "d", "undefined")
-
             while (true) {
                 println("Enter Student Grade as in (A,B,C,D) & for student in first and second semester enter Undefined : ")
                 val input = readLine()?.toString() ?: null
@@ -92,10 +87,8 @@ fun doAction(action: Action) {
                     break
                 }
             }
-
             val status: String
             val stats = listOf("active", "inactive")
-
             while (true) {
                 print("Enter Student Status (Active / Inactive) : ")
                 val input = readLine()
@@ -124,7 +117,7 @@ fun doAction(action: Action) {
                 }
             }
 
-            students.add(Student(id= id,name= name,gpa = gpa,grade= grade,status= status,notes = notes))
+            students.add(Student(id = id, name = name, gpa = gpa, grade = grade, status = status, notes = notes))
             println("Student Added!")
         }
 
