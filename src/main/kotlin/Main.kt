@@ -51,7 +51,7 @@ fun doAction(action: Action) {
                 print("Enter Student name: ")
                 val input = readLine()?.toString() ?: null
                 val nameInput = input?.lowercase() ?: null
-                if (nameInput == null) {
+                if (nameInput == null || nameInput.isEmpty()) {
                     println("Please enter a valid name")
 
                 } else if (nameInput.filter { it >= 'a' && it <= 'z' }.length != nameInput.length) {
@@ -63,7 +63,6 @@ fun doAction(action: Action) {
                 }
             }
             val gpa: Double
-
             while (true) {
                 print("Enter Student GPA (for student in first and second semester enter 0.0): ")
                 val input = readLine()?.toDoubleOrNull()
@@ -116,7 +115,6 @@ fun doAction(action: Action) {
                     }
                 }
             }
-
             students.add(Student(id = id, name = name, gpa = gpa, grade = grade, status = status, notes = notes))
             println("Student Added!")
         }
