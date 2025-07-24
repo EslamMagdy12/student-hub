@@ -1,16 +1,44 @@
 package org.example
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
+    while (true) {
+        println(
+            """
+            |Welcome to the Student Management System
+            |Please select an action:
+            |1. Add Student
+            |2. View All Students
+            |3. Filter Students by Grade
+            |4. Filter Students by Status
+            |5. Filter Students by Name
+            |6. Update Student
+            |7. Remove Student
+            |8. Exit
+        """.trimMargin()
+        )
+        val input = readLine()?.toInt()
+        when (input) {
+            1 -> TODO()
+            2 -> TODO()
+            3 -> TODO()
+            4 -> TODO()
+            5 -> TODO()
+            6 -> TODO()
+            7 -> TODO()
+            8 -> TODO()
+            else -> TODO()
+        }
+    }
+}
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
+fun doAction(action: Action) {
+    when (action) {
+        is Action.AddStudent -> TODO()
+        is Action.ViewAllStudents -> TODO()
+        is Action.FilterByGrade -> TODO()
+        is Action.FilterByStatus -> TODO()
+        is Action.FilterByName -> TODO()
+        is Action.UpdateStudent -> TODO()
+        is Action.RemoveStudent -> TODO()
     }
 }
