@@ -16,16 +16,16 @@ fun main() {
             |8. Exit
         """.trimMargin()
         )
-        val input = readLine()
+        val input = readLine()?.toInt()
         when (input) {
-            "1" -> TODO()
-            "2" -> TODO()
-            "3" -> TODO()
-            "4" -> TODO()
-            "5" -> TODO()
-            "6" -> TODO()
-            "7" -> TODO()
-            "8" -> TODO()
+            1 -> TODO()
+            2 -> TODO()
+            3 -> TODO()
+            4 -> TODO()
+            5 -> TODO()
+            6 -> TODO()
+            7 -> TODO()
+            8 -> TODO()
             else -> TODO()
         }
     }
