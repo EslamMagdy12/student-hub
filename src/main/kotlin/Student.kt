@@ -6,5 +6,5 @@ data class Student(
     val gpa: Double? = null,
     val grade: String? = null,
     val status: String? = null,
-    val notes: List<String>? = null
+    val notes: MutableList<String>? = null
 )
