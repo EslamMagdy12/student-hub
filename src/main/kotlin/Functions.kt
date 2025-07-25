@@ -211,6 +211,16 @@ fun extractData(students: MutableList<Student>){
     }
     println("A file named \"${file.name}\" is created!")
 }
+fun RemoveStudent(id: Int) {
+    val student = students.find { it.id == id }
+    when (student) {
+        null -> println("No Student with id $id")
+        else -> {
+            students.remove(student)
+            println("Student ${student.name} removed")
+        }
+    }
+}
 
 fun adminLogin(): Boolean {
     println("Admin Login -> Temporary hint: \n\tUsername: admin\n\tPassword: password123")
@@ -219,11 +229,11 @@ fun adminLogin(): Boolean {
     var username: String?
     print("Admin Username: ")
     username = readlnOrNull()
-     while (username.isNullOrEmpty()){
+    while (username.isNullOrEmpty()){
         println("Username cannot be empty. Please enter a valid username.")
-         print("Admin Username: ")
-         username = readlnOrNull()
-     }
+        print("Admin Username: ")
+        username = readlnOrNull()
+    }
 
     var password: String?
     print("Admin Password: ")
