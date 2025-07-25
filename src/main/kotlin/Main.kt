@@ -1,89 +1,16 @@
 package org.example
 
-val students: MutableList<Student> = mutableListOf()
-
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    while (true) {
-        println(
-            """
-            |Welcome to the Student Management System
-            |Please select an action:
-            |1. Add Student
-            |2. View All Students
-            |3. Filter Students by Grade
-            |4. Filter Students by Status
-            |5. Filter Students by Name
-            |6. Update Student
-            |7. Remove Student
-            |8. Filter Students by GPA Ranges
-            |9. Exit
-        """.trimMargin()
-        )
-        val input = readLine()?.toInt()
-        when (input) {
-            1 -> {
-                val student = getStudentDetails()
-                doAction(Action.AddStudent(student))
-            }
+    val name = "Kotlin"
+    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
+    // to see how IntelliJ IDEA suggests fixing it.
+    println("Hello, " + name + "!")
 
-            2 -> TODO()
-            3 -> {
-                print("Enter grade to filter by (A, B, C, D, Undefined): ")
-                val grade = readLine()?.lowercase() ?: ""
-                FilterByGrade(grade)
-            }
-            4 -> {
-                print("Enter status to filter by : ")
-                val status = readLine()?.lowercase() ?: ""
-                FilterByStatus(status)
-            }
-            5 -> {
-                print("Enter name (or part of it) to filter by: ")
-                val name = readLine()?.lowercase() ?: ""
-                FilterByName(name)
-            }
-            6 -> {
-                val id = readLine()?.toIntOrNull()
-                if (id != null) {
-                    doAction(Action.UpdateStudent(id))
-                } else {
-                    println("Invalid ID. Please enter a valid integer.")
-                }
-            }
-
-            7 -> TODO()
-            8 -> filterGPAranges()
-            9-> TODO()
-            else -> TODO()
-        }
-    }
-}
-
-fun doAction(action: Action) {
-    when (action) {
-        is Action.AddStudent -> {
-            val student = action.student
-            if (students.any { it.id == student.id }) {
-                println("Student with ID ${student.id} already exists.")
-            } else {
-                students.add(student)
-                println("Student ${student.name} added successfully.")
-            }
-        }
-
-        is Action.ViewAllStudents -> TODO()
-        is Action.FilterByGrade -> TODO()
-        is Action.FilterByStatus -> TODO()
-        is Action.FilterByName -> TODO()
-        is Action.UpdateStudent -> {
-            val student = students.find { it.id == action.id }
-            if (student != null) {
-                updateStudent(action.id)
-            } else {
-                println("Student with ID ${action.id} not found.")
-            }
-        }
-
-        is Action.RemoveStudent -> TODO()
+    for (i in 1..5) {
+        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
+        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
+        println("i = $i")
     }
 }
