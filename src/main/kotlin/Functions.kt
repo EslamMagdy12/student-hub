@@ -1,17 +1,6 @@
 package org.example
 
 fun getStudentDetails(): Student {
-    val id: Int
-    while (true) {
-        print("Enter Student ID: ")
-        val input = readLine()?.toIntOrNull()
-        if (input == null) {
-            println("Please enter a valid ID")
-        } else {
-            id = input
-            break
-        }
-    }
     val name: String
     while (true) {
         print("Enter Student name: ")
@@ -82,7 +71,6 @@ fun getStudentDetails(): Student {
         }
     }
     val student = Student(
-        id = id,
         name = name,
         gpa = gpa,
         grade = grade,
