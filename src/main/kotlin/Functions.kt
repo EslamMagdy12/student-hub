@@ -75,10 +75,9 @@ fun updateStudent(id: Int) {
             |Please select what you want to update:
             |1. Name
             |2. GPA
-            |3. Grade
-            |4. Status
-            |5. Notes
-            |6. Exit
+            |3. Status
+            |4. Notes
+            |5. Exit
         """.trimMargin()
         )
         val input = readLine()?.toIntOrNull()
@@ -92,24 +91,15 @@ fun updateStudent(id: Int) {
             2 -> {
                 print("Enter new GPA: ")
                 val newGpa = readLine()?.toDoubleOrNull()
-                if (newGpa != null && newGpa >= 0.0) {
+                if (newGpa != null && newGpa >= 0.0 && newGpa <= 4.0) {
                     student?.let { it.gpa = newGpa }
+                    student?.let { it.grade = Student.calculateGrade(newGpa) }
                 } else {
                     println("Invalid GPA. Please try again.")
                 }
             }
 
             3 -> {
-                print("Enter new grade (A, B, C, D, Undefined): ")
-                val newGrade = readLine()?.lowercase() ?: ""
-                if (newGrade in listOf("a", "b", "c", "d", "undefined")) {
-                    student?.let { it.grade = newGrade }
-                } else {
-                    println("Invalid grade. Please try again.")
-                }
-            }
-
-            4 -> {
                 print("Enter new status (Active / Inactive): ")
                 val newStatus = readLine()?.lowercase() ?: ""
                 if (newStatus in listOf("active", "inactive")) {
@@ -119,13 +109,13 @@ fun updateStudent(id: Int) {
                 }
             }
 
-            5 -> {
+            4 -> {
                 print("Enter note to add: ")
                 val note = readLine() ?: ""
                 student?.notes?.add(note)
             }
 
-            6 -> return
+            5 -> return
             else -> println("Invalid option. Please try again.")
         }
     }
