@@ -8,4 +8,5 @@ sealed class Action {
     data class FilterByName(val name: String) : Action()
     data class UpdateStudent(val id: Int) : Action()
     data class RemoveStudent(val id: Int) : Action()
+
 }
