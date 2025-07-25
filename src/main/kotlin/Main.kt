@@ -41,6 +41,8 @@ fun doAction(action: Action) {
                 val input = readLine()?.toIntOrNull()
                 if (input == null) {
                     println("Please enter a valid ID")
+                }else if(students.filter { it.id == input }.size == 1){
+                    println("Student ID already exists")
                 } else {
                     id = input
                     break
@@ -66,7 +68,7 @@ fun doAction(action: Action) {
             while (true) {
                 print("Enter Student GPA (for student in first and second semester enter 0.0): ")
                 val input = readLine()?.toDoubleOrNull()
-                if (input == null || input < 0.0) {
+                if (input == null || input < 0.0 || input > 4.0) {
                     println("Please enter a valid GPA")
                 } else {
                     gpa = input
