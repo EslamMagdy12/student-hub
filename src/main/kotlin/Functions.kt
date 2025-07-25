@@ -32,7 +32,7 @@ fun getStudentDetails(): Student {
     while (true) {
         print("Enter Student GPA (for student in first and second semester enter 0.0): ")
         val input = readLine()?.toDoubleOrNull()
-        if (input == null || input < 0.0) {
+        if (input == null || input < 0.0 || input > 4.0) {
             println("Please enter a valid GPA")
         } else {
             gpa = input
