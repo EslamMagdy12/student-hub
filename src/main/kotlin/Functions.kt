@@ -75,10 +75,9 @@ fun updateStudent(id: Int) {
             |Please select what you want to update:
             |1. Name
             |2. GPA
-            |3. Grade
-            |4. Status
-            |5. Notes
-            |6. Exit
+            |3. Status
+            |4. Notes
+            |5. Exit
         """.trimMargin()
         )
         val input = readLine()?.toIntOrNull()
@@ -92,24 +91,15 @@ fun updateStudent(id: Int) {
             2 -> {
                 print("Enter new GPA: ")
                 val newGpa = readLine()?.toDoubleOrNull()
-                if (newGpa != null && newGpa >= 0.0) {
+                if (newGpa != null && newGpa >= 0.0 && newGpa <= 4.0) {
                     student?.let { it.gpa = newGpa }
+                    student?.let { it.grade = Student.calculateGrade(newGpa) }
                 } else {
                     println("Invalid GPA. Please try again.")
                 }
             }
 
             3 -> {
-                print("Enter new grade (A, B, C, D, Undefined): ")
-                val newGrade = readLine()?.lowercase() ?: ""
-                if (newGrade in listOf("a", "b", "c", "d", "undefined")) {
-                    student?.let { it.grade = newGrade }
-                } else {
-                    println("Invalid grade. Please try again.")
-                }
-            }
-
-            4 -> {
                 print("Enter new status (Active / Inactive): ")
                 val newStatus = readLine()?.lowercase() ?: ""
                 if (newStatus in listOf("active", "inactive")) {
@@ -119,16 +109,95 @@ fun updateStudent(id: Int) {
                 }
             }
 
-            5 -> {
+            4 -> {
                 print("Enter note to add: ")
                 val note = readLine() ?: ""
                 student?.notes?.add(note)
             }
 
-            6 -> return
+            5 -> return
             else -> println("Invalid option. Please try again.")
         }
     }
+
+}
+fun FilterByGrade(grade: String){
+    val filterdGrade = students.filter{it.grade == grade}
+    if (filterdGrade.isNullOrEmpty()) {
+        println("No students found with grade: $grade.")
+
+    }else {
+        println("students with grade $grade:")
+        filterdGrade.forEach { println(it) }
+    }
+}
+
+fun FilterByName(name:String) {
+    val searchedName = students.filter{it.name.lowercase().contains(name.lowercase())}
+    if (searchedName.isNullOrEmpty()) {
+        println("no students found with name $name")
+    }else {
+        println("students with name $name: ")
+        println(searchedName)
+    }
+
+}
+
+fun FilterByStatus( status: String){
+    val filterdStatues = students.filter { it.status?.lowercase() == status.lowercase() }
+    if (filterdStatues.isNullOrEmpty()) {
+        println("No students found with status $status.")
+    }else {
+        println("Students with status $status:")
+        filterdStatues.forEach { println(it) }
+    }
+}
+
+fun filterGPAranges() {
+    val gpa3_5to4 = students.filter { it.gpa != null && it.gpa!! in 3.5..4.0 }
+    val gpa3to3_5  = students.filter { it.gpa != null && it.gpa!! in 3.0..3.5 }
+    val gpa2_5to3 = students.filter{it.gpa != null && it.gpa!! in 2.5 .. 3.0 }
+    val gpa2to2_5 = students.filter{it.gpa != null && it.gpa!! in 2.0 .. 2.5}
+    val gpaBelow2 = students.filter { it.gpa != null && it.gpa!! < 2.0 }
+
+    println("students with gpa 3.5 to 4: ")
+    if (gpa3_5to4.isEmpty()) {
+        println("None")
+    }else {
+         println(gpa3_5to4)
+    }
+
+    println("students with gpa 3.0 to 3.5: ")
+    if (gpa3to3_5.isEmpty()) {
+        println("None")
+    }else {
+        println(gpa3to3_5)
+    }
+
+    println("students with gpa 2.5 to 3.0: ")
+    if (gpa2_5to3.isEmpty()) {
+        println("None")
+    }else {
+        println(gpa2_5to3)
+    }
+
+    println("students with gpa 2.0 to 2.5: ")
+    if (gpa2to2_5.isEmpty()) {
+        println("None")
+    }else {
+        println(gpa2to2_5)
+    }
+
+
+    println("Students with GPA below 2.0:")
+    if (gpaBelow2.isEmpty()) {
+        println("None")
+    }
+    else{
+         println(gpaBelow2)
+    }
+
+
 
 }
 
