@@ -1,6 +1,7 @@
 package org.example
 
 val students: MutableList<Student> = mutableListOf()
+
 fun main() {
     while (true) {
         println(
@@ -19,12 +20,24 @@ fun main() {
         )
         val input = readLine()?.toInt()
         when (input) {
-            1 -> TODO()
+            1 -> {
+                val student = getStudentDetails()
+                doAction(Action.AddStudent(student))
+            }
+
             2 -> TODO()
             3 -> TODO()
             4 -> TODO()
             5 -> TODO()
-            6 -> TODO()
+            6 -> {
+                val id = readLine()?.toIntOrNull()
+                if (id != null) {
+                    doAction(Action.UpdateStudent(id))
+                } else {
+                    println("Invalid ID. Please enter a valid integer.")
+                }
+            }
+
             7 -> TODO()
             8 -> TODO()
             else -> TODO()
@@ -35,95 +48,28 @@ fun main() {
 fun doAction(action: Action) {
     when (action) {
         is Action.AddStudent -> {
-            val id: Int
-            while (true) {
-                print("Enter Student ID: ")
-                val input = readLine()?.toIntOrNull()
-                if (input == null) {
-                    println("Please enter a valid ID")
-                } else {
-                    id = input
-                    break
-                }
+            val student = action.student
+            if (students.any { it.id == student.id }) {
+                println("Student with ID ${student.id} already exists.")
+            } else {
+                students.add(student)
+                println("Student ${student.name} added successfully.")
             }
-            val name: String
-            while (true) {
-                print("Enter Student name: ")
-                val input = readLine()?.toString() ?: null
-                val nameInput = input?.lowercase() ?: null
-                if (nameInput == null || nameInput.isEmpty()) {
-                    println("Please enter a valid name")
-
-                } else if (nameInput.filter { it >= 'a' && it <= 'z' }.length != nameInput.length) {
-                    println("Please enter a valid name")
-
-                } else {
-                    name = nameInput
-                    break
-                }
-            }
-            val gpa: Double
-            while (true) {
-                print("Enter Student GPA (for student in first and second semester enter 0.0): ")
-                val input = readLine()?.toDoubleOrNull()
-                if (input == null || input < 0.0) {
-                    println("Please enter a valid GPA")
-                } else {
-                    gpa = input
-                    break
-                }
-            }
-            val grade: String
-            val grades = listOf("a", "b", "c", "d", "undefined")
-            while (true) {
-                println("Enter Student Grade as in (A,B,C,D) & for student in first and second semester enter Undefined : ")
-                val input = readLine()?.toString() ?: null
-                val gradeInput = input?.lowercase()
-                if (gradeInput == null || !grades.contains(gradeInput)) {
-                    println("Please enter a valid Grade")
-                } else {
-                    grade = gradeInput
-                    break
-                }
-            }
-            val status: String
-            val stats = listOf("active", "inactive")
-            while (true) {
-                print("Enter Student Status (Active / Inactive) : ")
-                val input = readLine()
-                val statusInput = input?.lowercase()
-                if (statusInput == null || !stats.contains(statusInput)) {
-                    println("Please enter a valid Status")
-                } else {
-                    status = statusInput
-                    break
-                }
-            }
-            val notes = mutableListOf<String>()
-            while (true) {
-                print("Do you want to add notes? (Y/N) : ")
-                val answer = readLine()?.lowercase()
-                if (answer == "y" || answer == "yes") {
-                    val note = readLine()?.lowercase() ?: ""
-                    notes.add(note)
-                    break
-                } else {
-                    if (answer == "n" || answer == "no") {
-                        break
-                    } else {
-                        println("Please enter a valid answer as in \"Yes\" or \"no\"")
-                    }
-                }
-            }
-            students.add(Student(id = id, name = name, gpa = gpa, grade = grade, status = status, notes = notes))
-            println("Student Added!")
         }
 
         is Action.ViewAllStudents -> TODO()
         is Action.FilterByGrade -> TODO()
         is Action.FilterByStatus -> TODO()
         is Action.FilterByName -> TODO()
-        is Action.UpdateStudent -> TODO()
+        is Action.UpdateStudent -> {
+            val student = students.find { it.id == action.id }
+            if (student != null) {
+                updateStudent(action.id)
+            } else {
+                println("Student with ID ${action.id} not found.")
+            }
+        }
+
         is Action.RemoveStudent -> TODO()
     }
 }
