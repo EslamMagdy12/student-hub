@@ -21,26 +21,13 @@ fun getStudentDetails(): Student {
     while (true) {
         print("Enter Student GPA (for student in first and second semester enter 0.0): ")
         val input = readLine()?.toDoubleOrNull()
-        if (input == null || input < 0.0) {
+        if (input == null || input < 0.0 || input > 4.0) {
             println("Please enter a valid GPA")
         } else {
             gpa = input
             break
         }
     }
-//    val grade: String
-//    val grades = listOf("a", "b", "c", "d", "undefined")
-//    while (true) {
-//        println("Enter Student Grade as in (A,B,C,D) & for student in first and second semester enter Undefined : ")
-//        val input = readLine()?.toString() ?: null
-//        val gradeInput = input?.lowercase()
-//        if (gradeInput == null || !grades.contains(gradeInput)) {
-//            println("Please enter a valid Grade")
-//        } else {
-//            grade = gradeInput
-//            break
-//        }
-//    }
     val status: String
     val stats = listOf("active", "inactive")
     while (true) {
