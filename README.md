@@ -1,7 +1,7 @@
-#**StudentHub**
+#StudentHub
 A student management system for recording, filtering, and processing student data
 
-##**Features**
+##Features
 1-student class
 2-Adding new students 
 3-filtering by grade, status, GPA, or name
