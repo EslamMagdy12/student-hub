@@ -3,6 +3,10 @@ package org.example
 val students: MutableList<Student> = mutableListOf()
 
 fun main() {
+    if (!adminLogin()) {
+        println("Access denied. Exiting program.")
+        return
+    }
     while (true) {
         println(
             """
