@@ -11,10 +11,10 @@ object StudentViewer {
         students.forEach { student ->
             println("ID: ${student.id}")
             println("Name: ${student.name}")
-            println("GPA: ${student.gpa ?: "N/A"}")      
+            println("GPA: ${student.gpa ?: "N/A"}")
             println("Grade: ${student.grade ?: "N/A"}")
             println("Status: ${student.status ?: "N/A"}")
-            println("Notes: ${if (student.notes.isEmpty()) "None" else student.notes.joinToString()}")
+            println("Notes: ${if (student.notes.isNullOrEmpty()) "No notes" else student.notes?.joinToString(", ")}")
             println("-------------------")
         }
     }
