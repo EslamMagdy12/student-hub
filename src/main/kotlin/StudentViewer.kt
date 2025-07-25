@@ -1,4 +1,4 @@
-package com.studenthub
+package org.example  // Match other files
 
 object StudentViewer {
     fun displayAll(students: List<Student>) {
@@ -11,8 +11,10 @@ object StudentViewer {
         students.forEach { student ->
             println("ID: ${student.id}")
             println("Name: ${student.name}")
+            println("GPA: ${student.gpa ?: "N/A"}")
             println("Grade: ${student.grade ?: "N/A"}")
-            println("Email: ${student.email ?: "N/A"}")
+            println("Status: ${student.status ?: "N/A"}")
+            println("Notes: ${student.notes?.joinToString() ?: "None"}")
             println("-------------------")
         }
     }
