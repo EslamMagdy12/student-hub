@@ -16,7 +16,8 @@ fun main() {
             |6. Update Student
             |7. Remove Student
             |8. Filter Students by GPA Ranges
-            |9. Exit
+            |9. Extract Students Data to a csv File
+            |10. Exit
         """.trimMargin()
         )
         val input = readLine()?.toInt()
@@ -53,7 +54,10 @@ fun main() {
 
             7 -> TODO()
             8 -> filterGPAranges()
-            9-> TODO()
+            9 -> {
+                extractData(students)
+            }
+            10 -> TODO()
             else -> TODO()
         }
     }
