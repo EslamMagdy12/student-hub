@@ -15,8 +15,9 @@ fun main() {
             |5. Filter Students by Name
             |6. Update Student
             |7. Remove Student
-            |8. Extract Students Data to a csv File
-            |9. Exit
+            |8. Filter Students by GPA Ranges
+            |9. Extract Students Data to a csv File
+            |10. Exit
         """.trimMargin()
         )
         val input = readLine()?.toInt()
@@ -27,9 +28,21 @@ fun main() {
             }
 
             2 -> TODO()
-            3 -> TODO()
-            4 -> TODO()
-            5 -> TODO()
+            3 -> {
+                print("Enter grade to filter by (A, B, C, D, Undefined): ")
+                val grade = readLine()?.lowercase() ?: ""
+                FilterByGrade(grade)
+            }
+            4 -> {
+                print("Enter status to filter by : ")
+                val status = readLine()?.lowercase() ?: ""
+                FilterByStatus(status)
+            }
+            5 -> {
+                print("Enter name (or part of it) to filter by: ")
+                val name = readLine()?.lowercase() ?: ""
+                FilterByName(name)
+            }
             6 -> {
                 val id = readLine()?.toIntOrNull()
                 if (id != null) {
@@ -40,9 +53,11 @@ fun main() {
             }
 
             7 -> TODO()
-            8 -> {
+            8 -> filterGPAranges()
+            9 -> {
                 extractData(students)
             }
+            10 -> TODO()
             else -> TODO()
         }
     }
