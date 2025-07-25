@@ -31,18 +31,21 @@ fun main() {
             3 -> {
                 print("Enter grade to filter by (A, B, C, D, Undefined): ")
                 val grade = readLine()?.lowercase() ?: ""
-                FilterByGrade(grade)
+                doAction(Action.FilterByGrade(grade))
             }
+
             4 -> {
                 print("Enter status to filter by : ")
                 val status = readLine()?.lowercase() ?: ""
-                FilterByStatus(status)
+                doAction(Action.FilterByStatus(status))
             }
+
             5 -> {
                 print("Enter name (or part of it) to filter by: ")
                 val name = readLine()?.lowercase() ?: ""
-                FilterByName(name)
+                doAction(Action.FilterByName(name))
             }
+
             6 -> {
                 val id = readLine()?.toIntOrNull()
                 if (id != null) {
@@ -60,12 +63,23 @@ fun main() {
                     println("Invalid ID. Please enter a valid integer.")
                 }
             }
-            8 -> filterGPAranges()
-            9 -> {
-                extractData(students)
+
+            8 -> {
+                doAction(Action.FilterByGPARange())
             }
-            10 -> TODO()
-            else -> TODO()
+
+            9 -> {
+                doAction(Action.ExtractDataToCSV())
+            }
+
+            10 -> {
+                doAction(Action.Exit())
+                break
+            }
+
+            else -> {
+                println("Invalid option. Please select a valid option.")
+            }
         }
     }
 }
@@ -83,9 +97,22 @@ fun doAction(action: Action) {
         }
 
         is Action.ViewAllStudents -> TODO()
-        is Action.FilterByGrade -> TODO()
-        is Action.FilterByStatus -> TODO()
-        is Action.FilterByName -> TODO()
+        is Action.FilterByGrade -> {
+            FilterByGrade(action.grade)
+        }
+
+        is Action.FilterByStatus -> {
+            FilterByStatus(action.status)
+        }
+
+        is Action.FilterByName -> {
+            FilterByName(action.name)
+        }
+
+        is Action.FilterByGPARange -> {
+            filterGPAranges()
+        }
+
         is Action.UpdateStudent -> {
             val student = students.find { it.id == action.id }
             if (student != null) {
@@ -102,6 +129,11 @@ fun doAction(action: Action) {
             } else {
                 println("Student with ID ${action.id} not found.")
             }
+        }
+
+        is Action.ExtractDataToCSV -> extractData(students)
+        is Action.Exit -> {
+            println("Exiting the Student Management System...")
         }
     }
 }
