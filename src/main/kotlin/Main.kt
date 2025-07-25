@@ -27,7 +27,9 @@ fun main() {
                 doAction(Action.AddStudent(student))
             }
 
-            2 -> TODO()
+            2 -> {
+                doAction(Action.ViewAllStudents())
+            }
             3 -> {
                 print("Enter grade to filter by (A, B, C, D, Undefined): ")
                 val grade = readLine()?.lowercase() ?: ""
@@ -96,7 +98,9 @@ fun doAction(action: Action) {
             }
         }
 
-        is Action.ViewAllStudents -> TODO()
+        is Action.ViewAllStudents -> {
+            StudentViewer.displayAll(students)
+        }
         is Action.FilterByGrade -> {
             FilterByGrade(action.grade)
         }
