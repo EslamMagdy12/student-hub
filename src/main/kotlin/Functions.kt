@@ -1,5 +1,5 @@
 package org.example
-
+import java.io.File
 fun getStudentDetails(): Student {
     val name: String
     while (true) {
@@ -143,4 +143,15 @@ fun updateStudent(id: Int) {
         }
     }
 
+}
+
+fun extractData(students: MutableList<Student>){
+    val file = File("students.csv")
+    file.printWriter().use { out ->
+        out.println("ID,Name,GPA,Grade,Status,Notes") // header
+        students.forEach {
+            out.println("${it.id},${it.name},${it.gpa},${it.grade},${it.status},${it.notes}")
+        }
+    }
+    println("A file named \"${file.name}\" is created!")
 }
