@@ -127,19 +127,19 @@ fun updateStudent(id: Int) {
 fun FilterByGrade(grade: String) {
     val filterdGrade = students.filter { it.grade == grade }
     println("students with grade $grade: ")
-    StudentViewer.displayAll(filterdGrade)
+    displayAll(filterdGrade)
 }
 
 fun FilterByName(name: String) {
     val searchedName = students.filter { it.name.lowercase().contains(name.lowercase()) }
     println("students with name $name: ")
-    StudentViewer.displayAll(searchedName)
+    displayAll(searchedName)
 }
 
 fun FilterByStatus(status: String) {
     val filterdStatues = students.filter { it.status?.lowercase() == status.lowercase() }
     println("students with status $status: ")
-    StudentViewer.displayAll(filterdStatues)
+    displayAll(filterdStatues)
 }
 
 fun filterGPAranges() {
@@ -150,19 +150,19 @@ fun filterGPAranges() {
     val gpaBelow2 = students.filter { it.gpa != null && it.gpa!! < 2.0 }
 
     println("students with gpa 3.5 to 4: ")
-    StudentViewer.displayAll(gpa3_5to4)
+    displayAll(gpa3_5to4)
 
     println("students with gpa 3.0 to 3.5: ")
-    StudentViewer.displayAll(gpa3to3_5)
+    displayAll(gpa3to3_5)
 
     println("students with gpa 2.5 to 3.0: ")
-    StudentViewer.displayAll(gpa2_5to3)
+    displayAll(gpa2_5to3)
 
     println("students with gpa 2.0 to 2.5: ")
-    StudentViewer.displayAll(gpa2to2_5)
+    displayAll(gpa2to2_5)
 
     println("Students with GPA below 2.0:")
-    StudentViewer.displayAll(gpaBelow2)
+    displayAll(gpaBelow2)
 
 }
 
@@ -185,5 +185,23 @@ fun RemoveStudent(id: Int) {
             students.remove(student)
             println("Student ${student.name} removed")
         }
+    }
+}
+
+fun displayAll(students: List<Student>) {
+    if (students.isEmpty()) {
+        println("No students found.")
+        return
+    }
+
+    println("\n=== STUDENT LIST ===")
+    students.forEach { student ->
+        println("ID: ${student.id}")
+        println("Name: ${student.name}")
+        println("GPA: ${student.gpa ?: "N/A"}")
+        println("Grade: ${student.grade ?: "N/A"}")
+        println("Status: ${student.status ?: "N/A"}")
+        println("Notes: ${if (student.notes.isNullOrEmpty()) "No notes" else student.notes?.joinToString(", ")}")
+        println("-------------------")
     }
 }

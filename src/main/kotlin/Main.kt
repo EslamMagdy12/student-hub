@@ -99,7 +99,7 @@ fun doAction(action: Action) {
         }
 
         is Action.ViewAllStudents -> {
-            StudentViewer.displayAll(students)
+            displayAll(students)
         }
         is Action.FilterByGrade -> {
             FilterByGrade(action.grade)
