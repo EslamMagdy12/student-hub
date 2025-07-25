@@ -24,7 +24,8 @@ fun main() {
             |10. Exit
         """.trimMargin()
         )
-        val input = readLine()?.toInt()
+        print("Chosen action is : ")
+        val input = readLine()?.toIntOrNull()
         when (input) {
             1 -> {
                 val student = getStudentDetails()
@@ -53,6 +54,7 @@ fun main() {
             }
 
             6 -> {
+                print("Enter Student ID: ")
                 val id = readLine()?.toIntOrNull()
                 if (id != null) {
                     doAction(Action.UpdateStudent(id))
@@ -62,6 +64,7 @@ fun main() {
             }
 
             7 -> {
+                print("Enter Student ID: ")
                 val id = readLine()?.toIntOrNull()
                 if (id != null) {
                     doAction(Action.RemoveStudent(id))

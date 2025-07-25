@@ -125,7 +125,7 @@ fun updateStudent(id: Int) {
 }
 
 fun FilterByGrade(grade: String) {
-    val filterdGrade = students.filter { it.grade == grade }
+    val filterdGrade = students.filter { it.grade?.lowercase() == grade.lowercase() }
     println("students with grade $grade: ")
     displayAll(filterdGrade)
 }
@@ -165,16 +165,34 @@ fun filterGPAranges() {
     displayAll(gpaBelow2)
 
 }
-
+var count = 1
 fun extractData(students: MutableList<Student>) {
-    val file = File("students.csv")
-    file.printWriter().use { out ->
-        out.println("ID,Name,GPA,Grade,Status,Notes") // header
-        students.forEach {
-            out.println("${it.id},${it.name},${it.gpa},${it.grade},${it.status},${it.notes}")
-        }
+    if (students.isEmpty()) {
+        println("No students are found")
+        return
     }
-    println("A file named \"${file.name}\" is created!")
+    try {
+        val file = File("students.csv")
+        file.printWriter().use { out ->
+            out.println("ID,Name,GPA,Grade,Status,Notes") // header
+            students.forEach {
+                out.println("${it.id},${it.name},${it.gpa},${it.grade},${it.status},${it.notes}")
+            }
+        }
+        println("A file named \"${file.name}\" is created!")
+    }catch (FileNotFoundException: java.io.FileNotFoundException) {
+        val fileName = "students ("+count.toString()+").csv"
+        val file2 = File("$fileName")
+        file2.printWriter().use { out ->
+            out.println("ID,Name,GPA,Grade,Status,Notes") // header
+            students.forEach {
+                out.println("${it.id},${it.name},${it.gpa},${it.grade},${it.status},${it.notes}")
+            }
+        }
+        println("A file named \"${file2.name}\" is created!")
+        count++;
+
+    }
 }
 
 fun RemoveStudent(id: Int) {
