@@ -52,7 +52,14 @@ fun main() {
                 }
             }
 
-            7 -> TODO()
+            7 -> {
+                val id = readLine()?.toIntOrNull()
+                if (id != null) {
+                    doAction(Action.RemoveStudent(id))
+                } else {
+                    println("Invalid ID. Please enter a valid integer.")
+                }
+            }
             8 -> filterGPAranges()
             9 -> {
                 extractData(students)
@@ -88,6 +95,13 @@ fun doAction(action: Action) {
             }
         }
 
-        is Action.RemoveStudent -> TODO()
+        is Action.RemoveStudent -> {
+            val student = students.find { it.id == action.id }
+            if (student != null) {
+                RemoveStudent(action.id)
+            } else {
+                println("Student with ID ${action.id} not found.")
+            }
+        }
     }
 }

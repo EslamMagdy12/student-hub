@@ -211,3 +211,13 @@ fun extractData(students: MutableList<Student>){
     }
     println("A file named \"${file.name}\" is created!")
 }
+fun RemoveStudent(id: Int) {
+    val student = students.find { it.id == id }
+    when (student) {
+        null -> println("No Student with id $id")
+        else -> {
+            students.remove(student)
+            println("Student ${student.name} removed")
+        }
+    }
+}
