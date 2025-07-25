@@ -229,7 +229,7 @@ fun adminLogin(): Boolean {
     var username: String?
     print("Admin Username: ")
     username = readlnOrNull()
-    while (username.isNullOrEmpty()){
+    while (username.isNullOrEmpty()) {
         println("Username cannot be empty. Please enter a valid username.")
         print("Admin Username: ")
         username = readlnOrNull()
@@ -238,7 +238,7 @@ fun adminLogin(): Boolean {
     var password: String?
     print("Admin Password: ")
     password = readlnOrNull()
-    while (password.isNullOrEmpty()){
+    while (password.isNullOrEmpty()) {
         println("Password cannot be empty. Please enter a valid password.")
         print("Admin Password: ")
         password = readlnOrNull()
