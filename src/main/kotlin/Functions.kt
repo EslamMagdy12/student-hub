@@ -28,19 +28,19 @@ fun getStudentDetails(): Student {
             break
         }
     }
-    val grade: String
-    val grades = listOf("a", "b", "c", "d", "undefined")
-    while (true) {
-        println("Enter Student Grade as in (A,B,C,D) & for student in first and second semester enter Undefined : ")
-        val input = readLine()?.toString() ?: null
-        val gradeInput = input?.lowercase()
-        if (gradeInput == null || !grades.contains(gradeInput)) {
-            println("Please enter a valid Grade")
-        } else {
-            grade = gradeInput
-            break
-        }
-    }
+//    val grade: String
+//    val grades = listOf("a", "b", "c", "d", "undefined")
+//    while (true) {
+//        println("Enter Student Grade as in (A,B,C,D) & for student in first and second semester enter Undefined : ")
+//        val input = readLine()?.toString() ?: null
+//        val gradeInput = input?.lowercase()
+//        if (gradeInput == null || !grades.contains(gradeInput)) {
+//            println("Please enter a valid Grade")
+//        } else {
+//            grade = gradeInput
+//            break
+//        }
+//    }
     val status: String
     val stats = listOf("active", "inactive")
     while (true) {
@@ -73,7 +73,6 @@ fun getStudentDetails(): Student {
     val student = Student(
         name = name,
         gpa = gpa,
-        grade = grade,
         status = status,
         notes = notes
     )
