@@ -54,7 +54,6 @@ fun main() {
 fun doAction(action: Action) {
     when (action) {
         is Action.AddStudent -> {
-            // ... (keep your existing AddStudent implementation)
         }
 
         is Action.ViewAllStudents -> {
